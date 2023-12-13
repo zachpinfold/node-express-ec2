@@ -23,6 +23,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - run: npm ci
+      - run: echo "${{ secrets.SSH_PRIVATE_KEY }}"
 
       - name: rsync deployments
         uses: burnett01/rsync-deployments@5.1
@@ -32,4 +33,4 @@ jobs:
           remote_path: /var/www/my-app/
           remote_host: <host>.compute.amazonaws.com
           remote_user: ubuntu
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          remote_key: "${{ secrets.SSH_PRIVATE_KEY }}"
